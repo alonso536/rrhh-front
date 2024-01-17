@@ -27,17 +27,21 @@ export class LoginPageComponent {
           return;
         }
 
-        console.log('entrando');
-
         if(!response.token) return;
 
         this.authService.saveUser(response.token!);
-        this.router.navigate(['/employees/home']);
-        Swal.fire(
-          'Login successful',
-          response.message,
-          'success'
-        );
+        this.authService.checkAuthentication()
+          .subscribe(isAuth => {
+            console.log(isAuth);
+            if(isAuth) {
+              this.router.navigate(['/employees/home']);
+              Swal.fire(
+                'Login successful',
+                response.message,
+                'success'
+              );
+            }
+          });
       });
   }
 }

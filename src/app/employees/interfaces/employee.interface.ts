@@ -12,3 +12,11 @@ export interface Employee {
   hiredate: Date;
   firedate?: Date;
 }
+
+export interface EmployeeMin {
+  id: number;
+  name: string;
+  lastname: string;
+  email: string;
+  phone: string;
+}

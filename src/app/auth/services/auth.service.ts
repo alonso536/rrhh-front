@@ -21,6 +21,10 @@ export class AuthService {
     return sessionStorage.getItem('token') || '';
   }
 
+  get auth(): UserDTO | undefined {
+    return this.user;
+  }
+
   checkAuthentication(): Observable<boolean> {
     if(!sessionStorage.getItem('token')) return of(false);
 

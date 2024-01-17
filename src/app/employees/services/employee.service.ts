@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateEmployeeDTO, EmployeeResponse } from '../interfaces';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,25 +11,38 @@ import { environment } from '../../../environments/environment';
 export class EmployeeService {
 
   private http: HttpClient = inject(HttpClient);
-  private baseUrl: string = environment.baseUrl;
+  private authService: AuthService = inject(AuthService);
 
-  index(page: number = 0): Observable<EmployeeResponse> {
+  private baseUrl: string = environment.baseUrl;
+  private headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.authService.token });
+
+  index(page: number): Observable<EmployeeResponse> {
     const url: string = `${this.baseUrl}/api/employees/page/${page}`;
-    return this.http.get<EmployeeResponse>(url);
+    return this.http.get<EmployeeResponse>(url, { headers: this.headers });
   }
 
   store(createEmployeeDTO: CreateEmployeeDTO): Observable<EmployeeResponse> {
     const url: string = `${this.baseUrl}/api/employees`;
-    return this.http.post<EmployeeResponse>(this.baseUrl, createEmployeeDTO);
+    return this.http.post<EmployeeResponse>(url, createEmployeeDTO, { headers: this.headers });
   }
 
-  show(term: string): Observable<EmployeeResponse> {
-    const url: string = `${this.baseUrl}/api/employees/${term}`;
-    return this.http.get<EmployeeResponse>(url);
-  }
-
-  destroy(id: string): Observable<EmployeeResponse> {
+  show(id: number): Observable<EmployeeResponse> {
     const url: string = `${this.baseUrl}/api/employees/${id}`;
-    return this.http.delete<EmployeeResponse>(url);
+    return this.http.get<EmployeeResponse>(url, { headers: this.headers });
+  }
+
+  destroy(id: number): Observable<EmployeeResponse> {
+    const url: string = `${this.baseUrl}/api/employees/${id}`;
+    return this.http.delete<EmployeeResponse>(url, { headers: this.headers });
+  }
+
+  jobs(): Observable<EmployeeResponse> {
+    const url: string = `${this.baseUrl}/api/employees/jobs`;
+    return this.http.get<EmployeeResponse>(url, { headers: this.headers });
+  }
+
+  cities(): Observable<EmployeeResponse> {
+    const url: string = `${this.baseUrl}/api/employees/cities`;
+    return this.http.get<EmployeeResponse>(url, { headers: this.headers });
   }
 }

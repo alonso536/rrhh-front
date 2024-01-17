@@ -1,0 +1,17 @@
+@if(employee) {
+    <h2 class="my-3">{{ title }}</h2>
+    <ul class="list-group">
+        <li class="list-group-item">ID: {{ employee.id }}</li>
+        <li class="list-group-item">Name: {{ employee.name }} {{ employee.lastname }}</li>
+        <li class="list-group-item">Email: {{ employee.email }}</li>
+        <li class="list-group-item">Phone: {{ employee.phone }}</li>
+        <li class="list-group-item">Address: {{ employee.address }}</li>
+        @if(employee.boss) {
+            <li class="list-group-item">Boss: {{ employee.boss }}</li>
+        }
+        <li class="list-group-item">Job: {{ employee.job }}</li>
+        <li class="list-group-item">Department: {{ employee.department }}</li>
+        <li class="list-group-item">Birthdate: {{ employee.birthdate }}</li>
+        <li class="list-group-item">Hiredate: {{ employee.hiredate }}</li>
+    </ul>
+}

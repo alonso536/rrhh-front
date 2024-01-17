@@ -1,21 +1,22 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Employee } from '../../interfaces';
+import { Component, inject } from '@angular/core';
+import { User } from '../../../auth/interfaces';
 import { PageResponse } from '../../../shared/interfaces/page-response.interface';
-import { EmployeeService } from '../../services/employee.service';
+import { UserService } from '../../services/user.service';
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
+  selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
-export class HomePageComponent implements OnInit {
-  public title: string = 'Employees list';
-  public employees: Employee[] = [];
+export class HomePageComponent {
+  public title: string = 'Users list';
+  public users: User[] = [];
   public page: number = 1;
-  public paginator!: PageResponse<Employee>;
+  public paginator!: PageResponse<User>;
 
-  public employeeService: EmployeeService = inject(EmployeeService);
+  public userService: UserService = inject(UserService);
   public activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
@@ -26,18 +27,18 @@ export class HomePageComponent implements OnInit {
           this.page = page;
         };
 
-        this.employeeService.index(this.page - 1)
+        this.userService.index(this.page - 1)
           .subscribe(response => {
             this.paginator = response.payload;
-            this.employees = response.payload.content;
+            this.users = response.payload.content;
           });
       }
     );     
   }
 
-  destroy(employee: Employee): void {
+  destroy(user: User): void {
     Swal.fire({
-      title: 'Are you sure that want to delete this employee?',
+      title: 'Are you sure that want to delete this user?',
       text: 'This action is irreversible',
       icon: 'warning',
       showCancelButton: true,
@@ -46,12 +47,12 @@ export class HomePageComponent implements OnInit {
       confirmButtonText: 'Delete'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.employeeService.destroy(employee.id).subscribe(
+        this.userService.destroy(user.id).subscribe(
           response => {
-            this.employees = this.employees.filter(e => e.id != employee.id);
+            this.users = this.users.filter(u => u.id != user.id);
             Swal.fire(
-              'Employeee deleted',
-              'Employeee deleted successfully',
+              'User deleted',
+              'User deleted successfully',
               'success'
             )
           }

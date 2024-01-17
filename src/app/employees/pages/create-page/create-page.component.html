@@ -1,1 +1,93 @@
-<p>create-page works!</p>
+<form [formGroup]="myForm" class="m-3" (submit)="onSubmit()">
+    <h2 class="my-3">{{ title }}</h2>
+    <div class="mb-3">
+        <label form="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" formControlName="name">
+        <div *ngIf="isValidField('name')" class="form-text text-danger">
+            <p *ngIf="myForm.controls['name'].getError('required')">The name is required</p>
+            <p *ngIf="myForm.controls['name'].getError('minlength')">The name must be more than 3 characters</p>
+            <p *ngIf="myForm.controls['username'].getError('maxlength')">The name must be less than 25 characters</p>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label form="name">Lastname</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" formControlName="lastname">
+        <div *ngIf="isValidField('lastname')" class="form-text text-danger">
+            <p *ngIf="myForm.controls['lastname'].getError('required')">The lastname is required</p>
+            <p *ngIf="myForm.controls['lastname'].getError('minlength')">The lastname must be more than 3 characters</p>
+            <p *ngIf="myForm.controls['lastname'].getError('maxlength')">The lastname must be less than 25 characters</p>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label form="name">Email</label>
+        <input type="email" class="form-control" id="email" name="email" formControlName="email">
+        <div *ngIf="isValidField('email')" class="form-text text-danger">
+            <p *ngIf="myForm.controls['email'].getError('required')">The email is required</p>
+            <p *ngIf="myForm.controls['email'].getError('email')">The email must be in a correct format</p>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label form="name">Phone</label>
+        <input type="number" class="form-control" id="phone" name="phone" formControlName="phone">
+        <div *ngIf="isValidField('phone')" class="form-text text-danger">
+            <p *ngIf="myForm.controls['phone'].getError('required')">The phone is required</p>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label form="name">Birthdate</label>
+        <input type="date" class="form-control" id="birthdate" name="birthdate" formControlName="birthdate">
+        <div *ngIf="isValidField('birthdate')" class="form-text text-danger">
+            <p *ngIf="myForm.controls['birthdate'].getError('required')">The birthdate is required</p>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label form="name">Job</label>
+        <select class="form-select" id="job" name="job" formControlName="job">
+            <option value="" selected>Seleccione una opcion</option>
+            @for(job of jobs; track job.id) {
+                <option [value]="job.id">{{ job.name }}</option>
+            }
+        </select>
+        <div *ngIf="isValidField('job')" class="form-text text-danger">
+            <p *ngIf="myForm.controls['job'].getError('required')">The job is required</p>
+        </div>
+    </div>
+
+    <h4 class="my-3">Address</h4>
+
+    <div class="mb-3">
+        <label form="name">Street</label>
+        <input type="text" class="form-control" id="street" name="street" formControlName="street">
+        <div *ngIf="isValidField('street')" class="form-text text-danger">
+            <p *ngIf="myForm.controls['street'].getError('required')">The street is required</p>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label form="name">Number</label>
+        <input type="number" class="form-control" id="number" name="number" formControlName="number">
+        <div *ngIf="isValidField('number')" class="form-text text-danger">
+            <p *ngIf="myForm.controls['number'].getError('required')">The number is required</p>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label form="name">City</label>
+        <select class="form-select" id="city" name="city" formControlName="city">
+            <option value="" selected>Seleccione una opcion</option>
+            @for(city of cities; track city.id) {
+                <option [value]="city.id">{{ city.name }}</option>
+            }
+        </select>
+        <div *ngIf="isValidField('city')" class="form-text text-danger">
+            <p *ngIf="myForm.controls['city'].getError('required')">The city is required</p>
+        </div>
+        <button type="submit" class="btn btn-primary my-3">{{ title }}</button>
+    </div>
+</form>
+
+@if(errors.length > 0) {
+    <div class="alert alert-danger">
+        @for(error of errors; track error) {
+            <p class="my-2">{{ error }}</p>
+        }
+    </div>
+}

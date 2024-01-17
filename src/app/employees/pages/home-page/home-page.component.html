@@ -1,9 +1,33 @@
 <h2 class="my-3">{{ title }}</h2>
-
-@for (employee of employees; track employee.id) {
-  <h4 class="my-3">{{ employee.name }}</h4>
-  <p class="my-3">{{ employee.lastname }}</p>
-} @empty {
+@if(employees.length > 0) {
+  <table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      @for (employee of employees; track employee.id) {
+        <tr>
+          <td>{{ employee.id }}</td>
+          <td>{{ employee.name + ' ' + employee.lastname }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.phone }}</td>
+          <td class="d-flex justify-content-evenly">
+              <button class="btn btn-primary btn-sm" [routerLink]="['/employees/show', employee.id]">Show</button>
+              <button class="btn btn-success btn-sm">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="destroy(employee)">Delete</button>
+          </td>
+      </tr>
+      } 
+        
+    </tbody>
+  </table>
+} @else {
   <p class="my-3">Empty list of employees</p>
 }
 

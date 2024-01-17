@@ -1,15 +1,15 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PageResponse } from '../../../shared/interfaces/page-response.interface';
-import { EmployeeMin } from '../../interfaces';
+import { User } from '../../../auth/interfaces';
 
 @Component({
-  selector: 'paginator',
+  selector: 'users-paginator',
   templateUrl: './paginator.component.html',
   styleUrl: './paginator.component.css'
 })
 export class PaginatorComponent implements OnInit, OnChanges {
   @Input()
-  public paginator!: PageResponse<EmployeeMin>;
+  public paginator!: PageResponse<User>;
 
   public pages: number[] = [];
   public from: number = 0;

@@ -1,0 +1,27 @@
+<ul class="pagination justify-content-center" *ngIf="pages.length > 0">
+    <li [ngClass]="paginator.first ? 'disabled page-item' : 'page-item'">
+        <a class="page-link" [routerLink]="['/users/home/page/', 1]"><<<</a>
+    </li>
+    <li class="page-item">
+        @if(paginator.number > 0) {
+            <a class="page-link" [routerLink]="['/users/home/page/', paginator.number]">&laquo;</a>
+        }
+    </li>
+    @for(page of pages; track paginator.number) {
+        <li class="page-item">
+            @if(page -1 == paginator.number) {
+                <span class="page-link disabled">{{ page }}</span>
+            } @else {
+                <a class="page-link" [routerLink]="['/users/home/page/', page]">{{ page }}</a>
+            }
+        </li>
+    }
+    <li class="page-item">
+        @if(paginator.number < paginator.totalPages - 1) {
+            <a class="page-link" [routerLink]="['/users/home/page/', paginator.number + 2]">&raquo;</a>
+        }
+    </li>
+    <li [ngClass]="paginator.last ? 'disabled page-item' : 'page-item'">
+        <a class="page-link" [routerLink]="['/users/home/page/', paginator.totalPages]">>>></a>
+    </li>
+</ul>
