@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { PageResponse } from '../../interfaces/page-response.interface';
-import { Employee } from '../../../employees/interfaces';
+import { PageResponse } from '../../../shared/interfaces/page-response.interface';
+import { Employee } from '../../interfaces';
 
 @Component({
-  selector: 'shared-paginator',
+  selector: 'paginator',
   templateUrl: './paginator.component.html',
   styleUrl: './paginator.component.css'
 })

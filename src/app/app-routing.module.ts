@@ -5,8 +5,12 @@ import { Error500PageComponent } from './shared/pages/error500/error500.componen
 
 const routes: Routes = [
   {
-    path: 'posts',
+    path: 'employees',
     loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
   {
     path: '404',
@@ -18,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'posts',
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
   {

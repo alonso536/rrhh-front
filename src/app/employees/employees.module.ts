@@ -6,7 +6,7 @@ import { EmployeesRoutingModule } from './employees-routing.module';
 import { PostLayoutPageComponent } from './layout/post-layout-page/post-layout-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
-import { PaginatorComponent } from '../shared/components/paginator/paginator.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SharedModule } from '../shared/shared.module';
 
 
@@ -15,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     PostLayoutPageComponent,
     HomePageComponent,
     CreatePageComponent,
+    PaginatorComponent,
   ],
   imports: [
     CommonModule,
