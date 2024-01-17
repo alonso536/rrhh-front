@@ -1,0 +1,12 @@
+<h2 class="my-3">{{ title }}</h2>
+
+@for (employee of employees; track employee.id) {
+  <h4 class="my-3">{{ employee.name }}</h4>
+  <p class="my-3">{{ employee.lastname }}</p>
+} @empty {
+  <p class="my-3">Empty list of employees</p>
+}
+
+@if(paginator) {
+  <shared-paginator [paginator]="paginator"></shared-paginator>
+}
