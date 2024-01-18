@@ -13,14 +13,18 @@ export class EmployeeLayoutPageComponent implements OnInit {
   private router: Router = inject(Router);
 
   public user?: UserDTO;
+  public isAdmin?: boolean;
 
   ngOnInit(): void {
     if(!this.authService.auth) {
       this.router.navigate(['/auth/login']);
     }
+
+    this.authService.isAdmin()
+      .subscribe(isAdmin => this.isAdmin = isAdmin);
+      
     this.user = this.authService.auth;
   }
-
 
   logout(): void {
     this.authService.logout();

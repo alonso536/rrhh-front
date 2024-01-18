@@ -10,7 +10,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" aria-current="page" routerLink="/employees/home">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="isAdmin" class="nav-item">
                         <a class="nav-link text-white" aria-current="page" routerLink="/employees/create">Add</a>
                     </li>
                     <li class="nav-item">

@@ -4,6 +4,7 @@ import { PageResponse } from '../../../shared/interfaces/page-response.interface
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -15,8 +16,10 @@ export class HomePageComponent {
   public users: User[] = [];
   public page: number = 1;
   public paginator!: PageResponse<User>;
+  public isAdmin?: boolean;
 
   public userService: UserService = inject(UserService);
+  public authService: AuthService = inject(AuthService);
   public activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
@@ -33,7 +36,10 @@ export class HomePageComponent {
             this.users = response.payload.content;
           });
       }
-    );     
+    );  
+    
+    this.authService.isAdmin()
+    .subscribe(isAdmin => this.isAdmin = isAdmin);
   }
 
   destroy(user: User): void {

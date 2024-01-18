@@ -38,9 +38,9 @@ export class AuthService {
       );
   }
 
-  isAdmin(): boolean {
+  isAdmin(): Observable<boolean> {
     if(!this.user) throw new Error(`User is not authenticated`);
-    return this.user.isAdmin;
+    return of(this.user.isAdmin);
   }
 
   login(username: string, password: string): Observable<AuthResponse> {

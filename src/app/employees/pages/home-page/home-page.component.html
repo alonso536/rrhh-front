@@ -19,8 +19,8 @@
           <td>{{ employee.phone }}</td>
           <td class="d-flex justify-content-evenly">
               <button class="btn btn-primary btn-sm" [routerLink]="['/employees/show', employee.id]">Show</button>
-              <button class="btn btn-success btn-sm" [routerLink]="['/employees/edit', employee.id]">Edit</button>
-              <button class="btn btn-danger btn-sm" (click)="destroy(employee)">Delete</button>
+              <button *ngIf="isAdmin" class="btn btn-success btn-sm" [routerLink]="['/employees/edit', employee.id]">Edit</button>
+              <button *ngIf="isAdmin" class="btn btn-danger btn-sm" (click)="destroy(employee)">Delete</button>
           </td>
       </tr>
       } 

@@ -14,7 +14,7 @@ export class LoginPageComponent {
   private authService: AuthService = inject(AuthService);
   private router: Router = inject(Router);
 
-  public title: string = 'Log In';
+  public title: string = 'Login';
   public username: string = '';
   public password: string = '';
   public errors: string[] = [];
