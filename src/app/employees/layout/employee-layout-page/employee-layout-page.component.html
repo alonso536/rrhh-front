@@ -1,4 +1,4 @@
-<header th:fragment="header">
+<header>
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
             <a class="navbar-brand text-white" routerLink="/employees/home">RRHH App</a>
@@ -34,6 +34,6 @@
 <main class="container">
   <router-outlet></router-outlet>
 </main>
-<footer th:fragment="footer" class="container">
-    <p class="my-3">User logged: <span>{{ user?.username }}</span></p>
+<footer class="container">
+    <p class="my-3">User logged: <span>{{ user?.username }}</span> | Roles: {{ user?.authorities | json }}</p>
 </footer>

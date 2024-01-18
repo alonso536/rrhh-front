@@ -6,7 +6,7 @@
         <div *ngIf="isValidField('name')" class="form-text text-danger">
             <p *ngIf="myForm.controls['name'].getError('required')">The name is required</p>
             <p *ngIf="myForm.controls['name'].getError('minlength')">The name must be more than 3 characters</p>
-            <p *ngIf="myForm.controls['username'].getError('maxlength')">The name must be less than 25 characters</p>
+            <p *ngIf="myForm.controls['name'].getError('maxlength')">The name must be less than 25 characters</p>
         </div>
     </div>
     <div class="mb-3">

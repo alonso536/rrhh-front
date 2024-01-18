@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateEmployeeDTO, EmployeeResponse } from '../interfaces';
+import { CreateEmployeeDTO, EmployeeResponse, UpdateEmployeeDTO } from '../interfaces';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../auth/services/auth.service';
 
@@ -29,6 +29,11 @@ export class EmployeeService {
   show(id: number): Observable<EmployeeResponse> {
     const url: string = `${this.baseUrl}/api/employees/${id}`;
     return this.http.get<EmployeeResponse>(url, { headers: this.headers });
+  }
+
+  update(updateEmployeeDTO: UpdateEmployeeDTO, id: number): Observable<EmployeeResponse> {
+    const url: string = `${this.baseUrl}/api/employees/${id}`;
+    return this.http.put<EmployeeResponse>(url, updateEmployeeDTO, { headers: this.headers });
   }
 
   destroy(id: number): Observable<EmployeeResponse> {

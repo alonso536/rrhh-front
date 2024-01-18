@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404PageComponent } from './shared/pages/error404/error404.component';
-import { Error500PageComponent } from './shared/pages/error500/error500.component';
 import { canActivatedGuard, canMatchGuard } from './auth/guards/auth.guard';
 import { canActivatedPublicGuard, canMatchPublicGuard } from './auth/guards/public.guard';
 
@@ -27,10 +26,6 @@ const routes: Routes = [
   {
     path: '404',
     component: Error404PageComponent
-  },
-  {
-    path: '500',
-    component: Error500PageComponent
   },
   {
     path: '**',

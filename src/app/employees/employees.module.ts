@@ -10,6 +10,7 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsPageComponent } from './pages/details-page/details-page.component';
+import { EditPageComponent } from './pages/edit-page/edit-page.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DetailsPageComponent } from './pages/details-page/details-page.componen
     CreatePageComponent,
     PaginatorComponent,
     DetailsPageComponent,
+    EditPageComponent,
   ],
   imports: [
     CommonModule,
